@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Tarot Card Draw</title>
+      <link rel="stylesheet" href="styles.css">
+      <script src="meaning.js" defer></script>
+      <script src="script.js" defer></script>
+      <script src="buttoncarousel.js" defer></script>
+   </head>
+   <body>
+      <h1>Tarot Card Draw</h1>
+      <p>Choose your Spread:</p>
+
+      <div class="carousel-container">
+         <button class="arrow" id="left">&#9664;</button>
+         <div class="button-track">
+           <div class="button-wrapper" id="buttonWrapper">
+            <button onclick="drawCards(1)"><img src="1card.jpg" alt="3 Card" width="150px" /><br>1 Card</button>
+            <button onclick="drawCards(2)"><img src="2card.png" alt="3 Card" width="150px" /><br>Yes/No</button>
+            <button onclick="drawCards(3)"><img src="pastpresentfuture.png" alt="3 Card" width="150px" /><br>Past Present Future</button>
+            <button onclick="drawCards(5)"><img src="5cross.png" alt="3 Card" width="150px" /><br>The Cross</button>
+            <button onclick="drawCards(7)"><img src="horseshoe.jpg" alt="3 Card" width="150px" /><br>Horseshoe</button>
+            <button onclick="drawCards(10)"><img src="celtic.png" alt="3 Card" width="150px" /><br>The Celtic Cross</button>
+            <button onclick="drawCards(12)"><img src="12houses.png" alt="3 Card" width="150px" /><br>Twelve Houses</button>
+         </div>
+      </div>
+      <button class="arrow" id="right">&#9654;</button>
+      </div>
+
+      <div id="cards" class="cards"></div>
+      <div id="cardModal" class="modal" style="display:none;">
+         <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="cardTitle"></h2>
+            <p><strong>Upright:</strong> <span id="meaningUpright"></span></p>
+            <p><strong>Reversed:</strong> <span id="meaningReversed"></span></p>
+         </div>
+      </div>
+   </body>
+</html>

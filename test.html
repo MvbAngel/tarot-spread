@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Button Carousel</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+
+    .carousel-container {
+      display: flex;
+      align-items: center;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    .arrow {
+      cursor: pointer;
+      font-size: 24px;
+      user-select: none;
+      padding: 10px;
+    }
+
+    .button-track {
+      display: flex;
+      overflow: hidden;
+      flex-wrap: nowrap;
+      width: 100%;
+    }
+
+    .button-wrapper {
+      display: flex;
+      transition: transform 0.3s ease;
+    }
+
+    .button-wrapper button {
+      min-width: 100px;
+      margin: 5px;
+      padding: 10px;
+      flex-shrink: 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #f0f0f0;
+      cursor: pointer;
+    }
+
+    .arrow:disabled {
+      color: #aaa;
+      cursor: default;
+    }
+    .button-wrapper button.active {
+        background-color: #007bff;
+        color: white;
+        border-color: #007bff;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="carousel-container">
+    <button class="arrow" id="left">&#9664;</button>
+    <div class="button-track">
+      <div class="button-wrapper" id="buttonWrapper">
+        <button>
+            <img src="pastpresentfuture.png" alt="3 Card" width="100px" />
+            <br>Option 1
+        </button>
+        <button>
+            <img src="celtic.png" alt="3 Card" width="100px" />
+            <br>Option 2
+        </button>
+        <button>
+            <img src="5cross.png" alt="3 Card" width="100px" />
+            <br>Option 3</button>
+        <button>
+            <img src="pastpresentfuture.png" alt="3 Card" width="100px" />
+            <br>Option 4
+        </button>
+        <button>
+            <img src="5cross.png" alt="3 Card" width="100px" />
+            <br>Option 5
+        </button>
+        <button>
+            <img src="pastpresentfuture.png" alt="3 Card" width="100px" />
+            <br>Option 6
+        </button>
+      </div>
+    </div>
+    <button class="arrow" id="right">&#9654;</button>
+  </div>
+
+  <script>
+    const wrapper = document.getElementById("buttonWrapper");
+    const leftArrow = document.getElementById("left");
+    const rightArrow = document.getElementById("right");
+
+    let currentIndex = 0;
+    const visibleCount = 3;
+    const totalButtons = wrapper.children.length;
+
+    function updateCarousel() {
+      const offset = currentIndex * 130; // Approx width + margin
+      wrapper.style.transform = `translateX(-${offset}px)`;
+      leftArrow.disabled = currentIndex === 0;
+      rightArrow.disabled = currentIndex + visibleCount >= totalButtons;
+    }
+
+    leftArrow.addEventListener("click", () => {
+      if (currentIndex > 0) currentIndex--;
+      updateCarousel();
+    });
+
+    rightArrow.addEventListener("click", () => {
+      if (currentIndex + visibleCount < totalButtons) currentIndex++;
+      updateCarousel();
+    });
+
+    const buttons = wrapper.querySelectorAll("button");
+
+    buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+        buttons.forEach((b) => b.classList.remove("active")); // Remove from all
+        btn.classList.add("active"); // Add to clicked
+    });
+    });
+
+
+    updateCarousel();
+  </script>
+</body>
+</html>
